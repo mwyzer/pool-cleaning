@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
 function Header() {
   return (
@@ -14,6 +15,7 @@ function Header() {
             <Link to="/#services" className="nav-link">Services</Link>
             <Link to="/#about" className="nav-link">About</Link>
             <Link to="/blog" className="nav-link">Blog</Link>
+            <ThemeToggle className="nav-theme-toggle" />
             <Link to="/#contact" className="nav-link contact-btn">Get Quote</Link>
           </nav>
         </div>

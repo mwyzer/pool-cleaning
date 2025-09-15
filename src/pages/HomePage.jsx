@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import ImageGallery from '../components/ImageGallery'
+import GoogleMap from '../components/GoogleMap'
 
 function HomePage() {
   return (
@@ -122,11 +123,18 @@ function HomePage() {
                 <strong>✉️ Email:</strong> info@aquaclean.com
               </div>
               <div className="contact-item">
-                <strong>📍 Service Area:</strong> City and surrounding areas
+                <strong>📍 Address:</strong> Jl. Maridih No.140, Pancoran Mas<br />Kec. Pancoran Mas, Kota Depok<br />Jawa Barat 16436, Indonesia
               </div>
               <div className="contact-item">
                 <strong>🕒 Hours:</strong> Mon-Fri 8AM-6PM, Sat 9AM-4PM
               </div>
+            </div>
+            <div className="contact-map">
+              <GoogleMap 
+                address="Jl. Maridih No.140, Pancoran Mas, Kec. Pancoran Mas, Kota Depok, Jawa Barat 16436, Indonesia"
+                businessName="AquaClean Pool Services"
+                zoom={17}
+              />
             </div>
           </div>
         </div>

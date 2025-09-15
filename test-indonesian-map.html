@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Indonesian Location - Google Maps</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .map-container {
+            margin: 2rem 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+        .address-info {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏊‍♂️ AquaClean Pool Services - Indonesian Location Test</h1>
+        
+        <div class="address-info">
+            <h3>📍 Our Office Location:</h3>
+            <p><strong>Jl. Maridih No.140, Pancoran Mas</strong><br>
+            Kec. Pancoran Mas, Kota Depok<br>
+            Jawa Barat 16436, Indonesia</p>
+        </div>
+
+        <div class="map-container">
+            <iframe
+                src="https://maps.google.com/maps?width=100%25&height=400&hl=en&q=Jl.%20Maridih%20No.140%2C%20Pancoran%20Mas%2C%20Kec.%20Pancoran%20Mas%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016436%2C%20Indonesia&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="AquaClean Pool Services Location - Depok, Indonesia">
+            </iframe>
+        </div>
+
+        <div class="buttons">
+            <button onclick="window.open('https://www.google.com/maps/search/?api=1&query=Jl.%20Maridih%20No.140%2C%20Pancoran%20Mas%2C%20Kec.%20Pancoran%20Mas%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016436%2C%20Indonesia', '_blank')">
+                📍 Open in Google Maps
+            </button>
+            <button onclick="window.open('https://maps.app.goo.gl/RZacwSfzhh8gPmn38', '_blank')">
+                🔗 Open Direct Link
+            </button>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+            <h4>Technical Details:</h4>
+            <ul>
+                <li><strong>Address:</strong> Indonesian location in Depok, West Java</li>
+                <li><strong>Embed Method:</strong> Google Maps iframe embed without API key</li>
+                <li><strong>Zoom Level:</strong> 17 (detailed street view)</li>
+                <li><strong>Map Language:</strong> English (hl=en)</li>
+                <li><strong>Fallback:</strong> Direct Google Maps search links</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
