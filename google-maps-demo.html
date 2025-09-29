@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaClean Pool Services - Google Maps Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+        }
+
+        .demo-section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            background: #3498db;
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .contact-info h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Google Map Styles */
+        .google-map {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .google-map:hover .map-overlay {
+            transform: translateY(0);
+        }
+
+        .map-info h4 {
+            color: white;
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .map-info p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0 0 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .map-directions-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .map-directions-btn:hover {
+            background: #2980b9;
+        }
+
+        .map-fallback {
+            padding: 1rem;
+            text-align: center;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            color: #555;
+        }
+
+        .features-list li:before {
+            content: "✓ ";
+            color: #3498db;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .code-block {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🏊‍♂️ AquaClean Pool Services</h1>
+            <p class="subtitle">Google Maps Integration Demo</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Features Overview -->
+        <div class="demo-section">
+            <div class="section-header">
+                <h2>🗺️ Google Maps Integration Features</h2>
+            </div>
+            <div class="section-content">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+                    <div>
+                        <h3>Key Features Implemented:</h3>
+                        <ul class="features-list">
+                            <li>Interactive Google Maps embed</li>
+                            <li>Hover overlay with business information</li>
+                            <li>Direct "Get Directions" button</li>
+                            <li>Responsive design for all screen sizes</li>
+                            <li>Fallback display for accessibility</li>
+                            <li>Clean integration with existing design</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Component Props:</h3>
+                        <div class="code-block">
+&lt;GoogleMap 
+  address="Jl. Maridih No.140, Pancoran Mas, Kec. Pancoran Mas, Kota Depok, Jawa Barat 16436, Indonesia"
+  businessName="AquaClean Pool Services"
+  zoom={17}
+/&gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section Demo -->
+        <div class="demo-section">
+            <div class="section-header">
+                <h2>📞 Contact Us - With Google Maps</h2>
+            </div>
+            <div class="section-content">
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <h3>Get Your Free Quote</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service Needed</label>
+                                <select id="service" name="service">
+                                    <option value="">Select a service</option>
+                                    <option value="regular-cleaning">Regular Cleaning</option>
+                                    <option value="chemical-balancing">Chemical Balancing</option>
+                                    <option value="equipment-maintenance">Equipment Maintenance</option>
+                                    <option value="seasonal-service">Seasonal Service</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="3"></textarea>
+                            </div>
+                            <button type="submit">Send Message</button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <div class="contact-item">
+                            <strong>📞 Phone:</strong> (555) 123-POOL
+                        </div>
+                        <div class="contact-item">
+                            <strong>✉️ Email:</strong> info@aquaclean.com
+                        </div>
+                        <div class="contact-item">
+                            <strong>📍 Address:</strong> Jl. Maridih No.140, Pancoran Mas<br>Kec. Pancoran Mas, Kota Depok<br>Jawa Barat 16436, Indonesia
+                        </div>
+                        <div class="contact-item">
+                            <strong>🕒 Hours:</strong> Mon-Fri 8AM-6PM, Sat 9AM-4PM
+                        </div>
+                    </div>
+
+                    <!-- Google Map -->
+                    <div class="contact-map">
+                        <div class="google-map">
+                            <div class="map-container">
+                                <iframe
+                                    src="https://maps.google.com/maps?width=100%25&height=300&hl=en&q=Jl.%20Maridih%20No.140%2C%20Pancoran%20Mas%2C%20Kec.%20Pancoran%20Mas%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016436%2C%20Indonesia&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                                    width="100%"
+                                    height="300"
+                                    style="border: 0; border-radius: 8px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    title="Map showing location of AquaClean Pool Services">
+                                </iframe>
+                                
+                                <div class="map-overlay">
+                                    <div class="map-info">
+                                        <h4>AquaClean Pool Services</h4>
+                                        <p>Jl. Maridih No.140, Pancoran Mas, Depok, Indonesia</p>
+                                        <button 
+                                            class="map-directions-btn"
+                                            onclick="window.open('https://www.google.com/maps/search/?api=1&query=Jl.%20Maridih%20No.140%2C%20Pancoran%20Mas%2C%20Kec.%20Pancoran%20Mas%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016436%2C%20Indonesia', '_blank')"
+                                            aria-label="Get directions in Google Maps">
+                                            📍 Get Directions
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="map-fallback">
+                                <p>
+                                    <strong>Our Office Location:</strong><br>
+                                    Jl. Maridih No.140, Pancoran Mas, Depok, Indonesia
+                                </p>
+                                <button onclick="window.open('https://www.google.com/maps/search/?api=1&query=Jl.%20Maridih%20No.140%2C%20Pancoran%20Mas%2C%20Kec.%20Pancoran%20Mas%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016436%2C%20Indonesia', '_blank')">
+                                    View on Google Maps
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Notes -->
+        <div class="demo-section">
+            <div class="section-header">
+                <h2>🔧 Implementation Details</h2>
+            </div>
+            <div class="section-content">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h3>Files Modified:</h3>
+                        <ul style="list-style-type: disc; margin-left: 2rem;">
+                            <li><code>src/components/GoogleMap.jsx</code> - New component</li>
+                            <li><code>src/pages/HomePage.jsx</code> - Integrated map</li>
+                            <li><code>src/styles/App.css</code> - Added map styles</li>
+                            <li><code>WARP.md</code> - Updated documentation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Next Steps for Production:</h3>
+                        <ol style="list-style-type: decimal; margin-left: 2rem;">
+                            <li>Obtain Google Maps API key</li>
+                            <li>Replace demo map URL with API key</li>
+                            <li>Update business address to real location</li>
+                            <li>Test on mobile devices</li>
+                            <li>Consider adding multiple locations if needed</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
